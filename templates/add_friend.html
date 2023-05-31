@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Ajout d'un ami{% endblock %}
+{% block bodyId %}addUserPage{% endblock %}
+
+{% block content %}
+<h1>Ajout d'un ami</h1>
+<span style="color: red;margin-left: 30%; font-size: 11px
+;">{{ erreur }}</span> 
+<form action="addFriend" method="get">
+{{ form.as_p }}
+<p>
+<input type="submit" value="Ajouter" />
+
+<a href="/" 
+    >Retour</a>
+</p>
+</form>
+{% endblock %}

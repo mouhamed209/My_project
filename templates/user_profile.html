@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}Création d'un profil{% endblock %} 
+{% block bodyId %}userProfilePage{% endblock %} 
+
+{% block content %}
+
+  
+  
+<h1>Création d'un compte</h1> 
+{% if er %}
+<div id="erreur_email" style='font-size:12px;color:red; text-align: center; font-family: Courier, monospace;'> l'email deja utilisé</div>
+{% endif %}
+
+
+<form >
+<p>
+<label for="profileType">Vous étes :</label>
+<select id="profileType" style="font-size: 20px;">
+
+<option value="student" {% if studentForm.is_bound %} 
+selected="selected" {% endif %} >Etudiant</option>
+<option value="employee" {% if employeeForm.is_bound %}
+selected="selected" {% endif %}>Employé</option>
+</select>
+</p>
+</form>
+
+<form action="register" method="post" id="studentForm" hidden>
+
+  {% csrf_token %}
+{{ studentForm.as_p }}
+<p>
+<input type="hidden" name="profileType"value="student" /> 
+<input type="submit" value="Créer un compte" />
+ <a href="/login" style="font-size: 12px
+ ;"> j'ai un compte</a>
+</p>
+</form>
+
+<form action="register" method="post" id="employeeForm">
+{% csrf_token %}
+{{ employeeForm.as_p }}
+<p>
+<input type="hidden" name="profileType” value="employee” /> 
+<input type="submit" value="Créer un compte" />
+ <a href="/login" style="font-size: 12px;"> j'ai un compte</a>
+</p>
+</form>
+<script type="text/javascript">
+    
+    function displayRightForm(){
+  
+      if($('#profileType').val()=='student'){
+          $('#employeeForm').hide();
+          $('#studentForm').show();
+      }
+      else{
+          $('#studentForm').hide();
+          $('#employeeForm').show();
+        
+  
+      }
+    }
+    
+  $(document).ready(displayRightForm); 
+  $('#profileType').change(displayRightForm); 
+/*
+  $(document).ready(function() {  
+  $("input#id_st-email").focusout(checkEmailField());
+});
+
+function checkEmai1Field()
+{
+
+$fieldValue = $("input#id_st-email").val();
+$.ajax({
+
+url: '/ajax/checkEmailField',
+
+data: ({value : $fieldValue}) ,
+
+type: 'GET',
+
+success: function(Sdata, $textStatus, $XMLHttpRequest) {
+if ($data != '')
+{
+
+$("input#id_st-email") .parent.prev('.errorlist').remove();
+$("input#id_st-email").parent.prev($data) ;
+}
+}
+})}
+  
+*/
+
+</script>
+
+
+{% endblock %}
+
+
+  
+      

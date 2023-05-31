@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+{% block title %}Connexion{% endblock %} 
+{% block bodyId %}loginPage{% endblock %} 
+
+{% block content %}
+<form action="" method="POST">
+   
+    {%csrf_token%}
+    {{form.as_p}}
+    {%if error%}
+
+<p style="font-size: 20px;color: red;">{{error}}</p>
+{%endif%}
+
+
+<p>
+<input class="btn btn-primary" type="submit" value="Se connecter"/>
+<a href="register">Créer un compte</a>
+</p>
+</form>
+{% endblock %}
+
+
+
+
+
+ 
+
+ 
+
+
+
+   
+
+ 

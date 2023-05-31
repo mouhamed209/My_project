@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Modification de mon profil{% endblock %}
+{% block bodyId %}modifyProfilePage{% endblock %}
+
+{% block content %}
+
+<h1>Modification de mon profil</h1>
+{% if er %}
+   <div style=" font-size: 12px;color: red; text-align: center;"> Address deja utilisé</div>
+{%endif%}
+
+<form action="" method="get">
+    
+{{ form.as_p }}
+<p>
+
+<input type="submit" value="Modifier"/>
+<a href="/">Retour</a>
+
+</p>
+
+</form>
+
+{% endblock %}

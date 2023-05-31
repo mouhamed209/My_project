@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des invitations{% endblock %}
+{% block bodyId %}inv{% endblock %}
+{% block content %}
+{% if invitations %}
+<div id="invitation-list">
+  <h2>Liste des invitations</h2>
+  <ul>
+    {% for invitation in invitations %}
+      <li>
+        <a href="showProfile?userToShow={{invitation.sender.id}}">{{ invitation.sender.first_name }} {{ invitation.sender.last_name }}</a> vous a envoyé une invitation.
+        
+          
+       
+       
+          <button id="accept-button"  > <a href="?Accepter={{invitation.sender.id}}"style='color:white;text-decoration:none;'>Accepter</a></button>
+          <button id="decline-button"><a href="?Refuser={{invitation.sender.id}}"style='color:white;text-decoration:none;'>Refuser</a></button>
+        
+      </li>
+      
+    {% endfor %}
+  </ul>
+</div>
+  
+  
+ 
+  {% else %}
+  <div style="text-align: center;">
+    <h2 style="font-size: 80px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Aucune invitation</h2>
+    <p style="font-size: 24px;">Vous n'avez actuellement aucune invitation en attente.</p>
+  </div>
+{% endif %}
+
+
+
+
+
+
+<style>
+#invitation-list {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #ccc;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 15%;
+}
+
+#invitation-list h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+#invitation-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#invitation-list li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#invitation-buttons button {
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  outline: none;
+}
+
+#accept-button {
+  background-color: #3b5998;
+  margin-right: 5px;
+  border-color: #3b5998;
+  color: #fff;
+}
+
+#decline-button {
+  background-color: brown;
+  color: #fff;
+  border-color: brown;
+  border-style: solid;
+ 
+  
+}
+
+  </style>
+{% endblock %}

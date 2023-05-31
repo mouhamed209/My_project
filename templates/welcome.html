@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}Accueil{% endblock %}
+{% block bodyId %}welcomepage{% endblock %}
+
+
+{% block headerContent %}
+
+<p id="name">{{ logged_user.first_name }} {{ logged_user.last_name }} </p>
+
+  
+
+ 
+<p id="name2">
+{% if logged_user.person_type == 'student' %}
+Etudiant en
+{% if logged_user.year == "1" %}
+{{ logged_user.year }}ére
+{% else %}
+{{ logged_user.year }}éme
+{% endif %}
+
+{{ logged_user.cursus.title }}
+{% else %}
+
+{{ logged_user.job.title|capfirst }}
+
+dans la faculté {{ logged_user.faculty }}
+{% endif %}
+ 
+
+</p>
+<p id="profileLinks">
+<a href="/inv" class="buttonLink"><span class="head
+">Invitation</span> <sup ><span id="len" style="background-color: red;
+border: 1px solid red;padding: 0.5px; font-size: 11px;"></span></sup></a>
+
+<a href="showProfile?userToShow={{ logged_user.id }} " class="buttonLink"><span class="head">Voir le profil</span></a>
+<a href="/modifyprofile" class="buttonLink"><span class="head">Modifier le profil</span></a>
+<a href="/?userOut=out" class="buttonLink"><span class="head">Deconnexion</span></a>
+  
+</p>
+
+
+{% endblock %}
+{%block content%}
+<section id="messageList">
+     
+    <form action="welcome" method="get" class="inlineForm">
+        <label for="newMessageInput">Publier un message :</label>
+        <input type="text" name="newMessage" id="newMessageInput" />
+        <input type="submit" value="Publier" />
+        
+          <!-- hna thot -->
+        
+        </form>
+         <span id="friendMessageList">
+         </span>      
+    
+</section>
+
+<section id="friendlist">
+    <p class="title">Mes amis</p>
+    <p ><a href="addFriend" class="buttonLink">Ajouter</a></p>
+    
+<span id="lis">
+
+
+
+</span>
+  
+
+
+
+
+</ul>
+
+</section>
+
+<script text="text/javascript">
+  
+$(document).ready(function() {
+  
+  setInterval(function() {
+    $.ajax({
+      url: "update_messages",
+      success: function(response) {
+        $('#friendMessageList').html(response);
+      }
+    });
+    $.ajax({
+      url: "/len_inv",
+      success: function(response){
+        $('#len').html(response);
+      }
+
+
+    });
+    $.ajax({
+      url:"/list_friend",
+      success:function(response){
+        $('#lis').html(response);
+      }
+    });
+
+  
+    
+  
+  },500);
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+{%endblock%}
