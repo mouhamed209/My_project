@@ -1,6 +1,5 @@
 "# My_project" 
-"# My_project" 
-nstallation d’une version officielle avec¶
+nstallation d’une version officielle avec
 C’est la façon recommandée d’installer Django.
 
 Installez pip. La manière la plus simple est d’utiliser l”installeur pip autonome. Si votre distribution contient déjà une version installée de pip, il pourrait être nécessaire de la mettre à jour si elle est trop ancienne. Dans ce cas, vous le verrez bien car l’installation ne fonctionnera pas.
@@ -33,8 +32,9 @@ Après avoir configuré et activé l’environnement virtuel, exécutez la comma
 / 
 $ python -m pip install -e django/
 Ceci rendra le code Django importable et mettra aussi à disposition la commande utilitaire django-admin. En d’autres mots, vous serez fin prêt !
-
 Lorsque vous souhaitez mettre à jour votre copie du code source de Django, lancez la commande git pull à partir du répertoire django. Quand vous faites cela, Git télécharge toutes les modifications.
+
+
 Voici quelques commandes couramment utilisées avec Django :
 python manage.py runserver : Démarre le serveur de développement Django.
 python manage.py startapp app_name : Crée une nouvelle application Django avec le nom spécifié.
